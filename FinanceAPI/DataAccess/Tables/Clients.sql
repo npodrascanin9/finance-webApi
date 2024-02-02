@@ -1,0 +1,24 @@
+CREATE TABLE [dbo].[Clients](
+	[Id] [uniqueidentifier] NOT NULL,
+	[TenantId] [uniqueidentifier] NULL,
+	[Vat] [nvarchar](20) NOT NULL,
+	[CompanyRegistrationNumber] [nvarchar](20) NOT NULL,
+	[CompanyType] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[CompanyRegistrationNumber] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Clients]  WITH CHECK ADD FOREIGN KEY([TenantId])
+REFERENCES [dbo].[Tenants] ([Id])
+GO
+
+ALTER TABLE [dbo].[Clients]  WITH CHECK ADD FOREIGN KEY([Vat])
+REFERENCES [dbo].[Companies] ([Vat])
+GO
