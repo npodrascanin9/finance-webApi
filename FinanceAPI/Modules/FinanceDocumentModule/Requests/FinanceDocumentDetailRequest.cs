@@ -23,8 +23,8 @@ namespace FinanceAPI.Modules.FinanceDocumentModule.Requests
         public bool IsValid()
         {
             //WARNING: This can be solved with FluentValidation as well
-            bool hasTenantId = TenantId.Equals(default),
-                 hasDocumentId = DocumentId.Equals(default),
+            bool hasTenantId = !TenantId.Equals(default),
+                 hasDocumentId = !DocumentId.Equals(default),
                  hasProductCode = ProductCode.HasText();
             return hasTenantId && hasDocumentId && hasProductCode;
         }
