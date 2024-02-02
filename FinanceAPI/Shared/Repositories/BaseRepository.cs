@@ -9,7 +9,8 @@ namespace FinanceAPI.Shared.Repositories
     {
         Task<T?> FirstOrDefault(
             Expression<Func<T, bool>> where);
-        Task<bool> Any(Expression<Func<T, bool>> wherePredicate = null);
+        Task<bool> Any(
+            Expression<Func<T, bool>> wherePredicate = null);
     }
 
     public class BaseRepository<T> : IBaseRepository<T>
